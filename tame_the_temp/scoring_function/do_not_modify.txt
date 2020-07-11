@@ -1,0 +1,4 @@
+This directory will be deleted by the automated submission pipeline
+and replaced with the original files.
+
+Relying on modified files here may break your code and prevent scoring.
