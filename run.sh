@@ -4,10 +4,10 @@ python main.py train \
 	--raw_data_file='data/raw/train/20190601162260/' \
 	--processed_data_folderpath='data/processed/' \
 	--model_folderpath='models/' \
-	--model_name="basic-lags" && \
+	--model_name="RFinit" && \
 python main.py predict \
 	--raw_data_file='data/raw/train/20190601162260/' \
 	--processed_data_folderpath='data/processed/' \
 	--model_folderpath='models/' \
-	--model_name="basic-lags" \
-	--output_filepath='output/basic_lags'
+	--model_name="RFinit" \
+	--output_filepath='output/RFinit'

@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 
 import pickle
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
 
 from src.process import get_processed_data
 
@@ -17,7 +17,7 @@ def train(raw_data_file, processed_data_folderpath, model_folderpath, model_name
     x_train_df, y_train_df = get_processed_data(raw_data_file, processed_data_folderpath, pipeline='train')
 
     # This is a place holder for a model. Replace this with you model.
-    regressor = LinearRegression()
+    regressor = RandomForestRegressor(n_jobs=-1)
 
     logger.info('Training model')
     regressor.fit(x_train_df, y_train_df.values[:, 0])
