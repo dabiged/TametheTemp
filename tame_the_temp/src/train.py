@@ -17,7 +17,7 @@ def train(raw_data_file, processed_data_folderpath, model_folderpath, model_name
     x_train_df, y_train_df = get_processed_data(raw_data_file, processed_data_folderpath, pipeline='train')
 
     # This is a place holder for a model. Replace this with you model.
-    regressor = RandomForestRegressor(n_jobs=-1)
+    regressor = RandomForestRegressor(n_jobs=-1,n_estimators=40,min_samples_leaf=3,max_features='auto')
 
     logger.info('Training model')
     regressor.fit(x_train_df, y_train_df.values[:, 0])
