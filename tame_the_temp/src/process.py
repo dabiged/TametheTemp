@@ -27,7 +27,8 @@ def get_processed_data(input_filepath, output_folderpath, pipeline):
     data_columns = list(df.columns)
     if pipeline == 'train':
         # drop rows containing null/nan values
-        df = df[df[data_columns].notnull().all(axis=1)]
+        df = df[df[data_columns].notnull().all(axis=1)].loc[600000:,:]
+        print("Starting Training from the 600000th valid row")
     else:
         df.fillna(0.0, inplace=True)
     # Write data to csv files
