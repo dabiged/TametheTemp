@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 
 import pickle
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LassoCV
 
 from src.process import get_processed_data
 
@@ -17,9 +17,9 @@ def train(raw_data_file, processed_data_folderpath, model_folderpath, model_name
     x_train_df, y_train_df = get_processed_data(raw_data_file, processed_data_folderpath, pipeline='train')
 
     # This is a place holder for a model. Replace this with you model.
-    regressor = RandomForestRegressor(n_jobs=-1,n_estimators=40,min_samples_leaf=3,max_features='auto')
+    regressor = LassoCV()
 
-    logger.info('Training model')
+    logger.info('Training model with LassoCV')
     regressor.fit(x_train_df, y_train_df.values[:, 0])
 
     logger.info('Saving model')
