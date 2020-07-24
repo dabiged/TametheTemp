@@ -30,6 +30,12 @@ def get_processed_data(input_filepath, output_folderpath, pipeline):
         df = df[df[data_columns].notnull().all(axis=1)]
     else:
         df.fillna(0.0, inplace=True)
+
+    firstACcolsList=['timestamp', 'PPO:AC4_1A:TIC7201-PV', 'PPO:AC4_1A:FIC7201-PV', 'PPO:AC4_1A:FIC7271-PV', 'PPO:AC4_1A:WIC7211-PV', 'PPO:PU2033:FI7061', 'PPO:PU2034:FI7062', 'PPO:PU2035:FI7063', 'PPO:PU2033:WI7061', 'PPO:PU2034:WI7062', 'PPO:PU2035:WI7063', 'PPO:PU2033:WIC7064-PV', 'PPO:PU2741:TIC7182-PV', 'PPO:L-AC4 FD_S2_2HR_SQL', 'PPO:L-AC4FD_RS_2HR_SQL', 'PPO:L-AC4 FD_CACO3_2HR_SQL', 'PPO:L-AC4 FD_PH_2HR_SQL', 'PPO:AG2241:JIC7201-PV', 'PPO:AG2241:AG2241-RPM', 'PPO:AC2004:PIC7065A-PV', 'PPO:PV2016:PV7127', 'PPO:PV2017:PV7137', 'PPO:AC2004:LIC7280-PV', 'PPO:PV2004:ZI7121', 'PPO:PV2005:ZI7131', 'PPO:PV2004:FIC7121-PV', 'PPO:PV2005:FIC7131-PV', 'PPO:L-AC4_S2_2HR_SQL', 'PPO:L-ACD4_ORP_3HR_SQL', 'PPO:L-ACD4_H2SO4_3HR_SQL']
+    for col in df.columns:
+        if col not in firstACcolsList:
+            df.drop(col,axis=1,inplace=True)
+    logger.info('Dropping NonAC1 columns')
     # Write data to csv files
     logger.info('Saving processed data')
     output = _save_processed_data(df, output_folderpath, pipeline)
